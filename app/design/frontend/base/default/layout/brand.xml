@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+			<action method="addItem"><type>skin_css</type><name>css/netsol/brand/brand.css</name></action>
+			<action method="addItem" ifconfig="netsol_brand/settings/show_in_footer"><type>skin_css</type><name>css/netsol/brand/tinycarousel.css</name></action>
+			<!--<action method="addItem" ifconfig="netsol_brand/settings/show_in_footer"><type>skin_js</type><name>js/netsol/brand/jquery.bxslider.min.js</name></action>-->
+			
+		</reference>
+		<reference name="top.menu">
+			<block type="brand/navigation" name="brand.navigation">
+				<action method="setTemplate">  
+					<!--<template>brand/navigation/brandtopmenu.phtml</template> -->
+					<template helper="brand/data/showTemplate"/>
+				</action>
+			</block>
+        </reference>
+		<reference name="footer">
+			<block type="brand/brand" name="brandfooter" before="-">
+				<action method="setTemplate">  
+					<template helper="brand/data/showFeaturedbrand"/>
+				</action>
+				<!--<action method="setTemplate" ifconfig="netsol_brand/settings/show_in_footer">  
+					<template>brand/brandfooter.phtml</template>       
+				</action>-->
+			</block>
+		</reference>
+	</default>
+	<brand_brand_index>
+		<reference name="content">
+			<block type="brand/brand" name="brand.brand" template="brand/brand.phtml"/>
+		</reference>
+	</brand_brand_index>
+	<brand_brand_view>
+		<reference name="content">
+			<block type="brand/brandproductlist" name="brandproductlist" template="brand/brandproductlist.phtml" >
+				 <block type="brand/brandtoolbar" name="brandtoolbar" template="brand/toolbar/brandtoolbar.phtml">
+					<block type="brand/pager" name="brand_html_pager"/>	
+				 </block>
+				  <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>6</count></action>
+                  <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>5</count></action>
+                  <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>4</count></action>
+                  <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>4</count></action>
+                  <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
+                  <action method="setToolbarBlockName"><name>brandtoolbar</name></action>
+             </block>
+		</reference>
+	</brand_brand_view>
+</layout>

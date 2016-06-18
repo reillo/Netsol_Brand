@@ -1,0 +1,124 @@
+<?php
+$_options = $this->getOptions();
+$search = array( 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' );
+$collections = $this->getBrands();
+$letter = array();
+$logowidth = Mage::getStoreConfig('netsol_brand/settings/logo_width');
+$logoheight = Mage::getStoreConfig('netsol_brand/settings/logo_height');
+$defaultlogo = Mage::getStoreConfig('netsol_brand/settings/default_logo');
+$brandurl = Mage::getStoreConfig('netsol_brand/settings/brand_url');
+if($brandurl == '')
+{
+	$brandurl = 'brand';
+}
+$brandproducturlsuffix = '.html';
+$brandtitle = Mage::getStoreConfig('netsol_brand/settings/brand_title');
+if($brandtitle == '')
+{
+	$brandtitle = 'brands';
+}
+$defaultlogo = str_replace("default/","",$defaultlogo);
+?>
+<div class="allBrands">
+	<h1><?php echo ucwords($brandtitle); ?></h1>
+	<div class="alphaBets">
+		<ul class="listing">
+		<?php foreach($search as $value){ ?>
+			<li>
+				<button value="<?php echo $value; ?>"  id="<?php echo $value; ?>" class="brandletter alpha" title="<?php echo $value; ?>" id="<?php echo $value; ?>" class="alpha"><?php echo $value; ?></button>
+			</li>
+		<?php } ?>
+		</ul>
+	</div>
+	<div id="resultInfo" class="resultInfo">
+		<img src="<?php echo $this->getSkinUrl('images/netsol/brand/product_loader.gif'); ?>" class="resultInfoLoadingImg" id="resultInfoLoadingImg" style="display: none;">
+		<ul class="brandlist">
+		<?php if(count($collections)){ ?>
+		<?php foreach($collections as $brand){ ?>
+			<li class="allbrand">
+				<!--<a href="<?php echo Mage::getBaseUrl();?>brand/index/<?php echo strtolower($brand['name']).'.html'; ?>">
+				<img class="brand_logo" src="<?php echo ($brand['base_image']!='') ? $this->getBrandlogoimageurl().$brand['logo'] : $this->getdefaultImage(); ; ?>" /></a>-->
+				<a href="<?php echo Mage::getBaseUrl().$brandurl.'/'.strtolower($brand['name']).trim($brandproducturlsuffix); ?>" >
+					<?php if(($brand['logo'] != '') || ($defaultlogo != '')): ?>
+						<img class="brand_logo" src="<?php echo ($brand['logo'] != '') ? $this->resize('brand/logo/','brand/logo/resize/',$brand['logo'],$logowidth,$logoheight) : $this->resize('brand/default/','brand/default/resize/',$defaultlogo,$logowidth,$logoheight); ?>" />
+					<?php else: 
+						$defaultlogo = 'small_image.jpg';
+					?>
+						<img class="brand_logo" src="<?php echo $this->resize('brand/default/','brand/default/resize/',$defaultlogo,$logowidth,$logoheight); ?>" />
+					<?php endif; ?>
+					<h4 class="brandName"><?php echo $brand['name'] ?></h4>
+				</a>
+			</li>
+		<?php } ?>
+		</ul>
+		<?php } else{ ?>
+			<?php echo "No Brands"; ?>
+		<?php } ?>
+	</div>
+	
+</div>
+<script type="text/javascript">
+if ( typeof jQuery == 'undefined')
+{
+	var script=document.createElement('script');
+  script.onload = function() {
+	  console.log("Script loaded and ready");
+	  jQuery.noConflict();
+		jQuery(document).ready(function(){
+			jQuery('.brandletter').click(function(){
+				var url = '<?php echo $this->getBrandlisturl();?>';
+				var letter = jQuery(this).text();
+				var id = this.id;
+			    jQuery('#resultInfoLoadingImg').css('display','block');
+			    jQuery(".alphaBets .listing li button").removeClass("active");
+				try{
+					jQuery.ajax({
+						url:url,
+						type: 'POST',
+						dataType: 'json',
+						data: 'letter='+letter,
+						success: function (data){
+							jQuery('.brandlist').html(data.brand_html);
+							jQuery('.brandlist > .letter').html(data.letter);
+							jQuery("#"+id).addClass('active');
+							jQuery('#resultInfoLoadingImg').css('display','none');
+						}
+					});
+				}catch (e){
+					
+				}
+				
+			});
+		});
+	}
+  script.type='text/javascript';
+  script.src='<?php echo $this->getSkinUrl('js/netsol/brand/jquery-1.10.2.min.js');?>';
+  document.getElementsByTagName('head')[0].appendChild(script)
+}else{
+	jQuery(document).ready(function(){
+			jQuery('.brandletter').click(function(){
+				var url = '<?php echo $this->getBrandlisturl();?>';
+				var letter = jQuery(this).text();
+				var id = this.id;
+				jQuery(".alphaBets .listing li button").removeClass("active");
+				jQuery('#resultInfoLoadingImg').css('display','block');
+				try{
+					jQuery.ajax({
+						url:url,
+						type: 'POST',
+						dataType: 'json',
+						data: 'letter='+letter,
+						success: function (data){
+							jQuery('.brandlist').html(data.brand_html);
+							jQuery('.brandlist > .letter').html(data.letter);
+							jQuery("#"+id).addClass('active');
+							jQuery('#resultInfoLoadingImg').css('display','none');
+						}
+					});
+				}catch (e){
+					
+				}	
+			});
+		});
+}
+</script>

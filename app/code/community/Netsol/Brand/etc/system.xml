@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<netsol_brand>
+			<label>Netsol</label>
+			<sort_order>1</sort_order>
+		</netsol_brand>
+	</tabs>
+	<sections>
+		<netsol_brand>
+			<label>Brand Settings</label>
+			<tab>netsol_brand</tab>
+			<sort_order>0</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<settings>
+					<label>Brand Details</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>0</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+				<fields>
+					<status translate="label">
+						<label>Status</label>
+						<frontend_type>Select</frontend_type>
+						<source_model>adminhtml/system_config_source_yesno</source_model>
+						<sort_order>1</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Set Extension enable/disable</comment>
+						<validate>required-entry</validate>
+					</status>
+
+					<brand_url translate="label">
+						<label>URL</label>
+						<frontend_type>text</frontend_type>
+						<sort_order>2</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>URL for brand page, by default the url will be www.domain.com/brand</comment>
+						<validate>validate-required</validate>
+					</brand_url>
+					
+					<brand_title translate="label">
+						<label>Title</label>
+						<frontend_type>text</frontend_type>
+						<sort_order>3</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Title for brand page, by default it will brands</comment>
+					</brand_title>
+
+					<brand_metatag translate="label">
+						<label>Meta Keywords</label>
+						<frontend_type>textarea</frontend_type>
+						<sort_order>4</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Meta keywords for brand page</comment>
+					</brand_metatag>
+
+					<brand_description translate="label">
+						<label>Meta Description</label>
+						<frontend_type>textarea</frontend_type>
+						<sort_order>5</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>Meta Description for brand page</comment>
+					</brand_description>
+
+					<logo_width translate="label">
+						<label>Logo Width</label>
+						<frontend_type>text</frontend_type>
+						<validate>required-entry</validate>
+						<sort_order>6</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>In pixel,Recommended 120 px</comment>
+						<validate>required-entry</validate>
+					</logo_width>
+
+
+					<logo_height translate="label">
+						<label>Logo Height</label>
+						<frontend_type>text</frontend_type>
+						<validate>required-entry</validate>
+						<sort_order>7</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<comment>In pixel,Recommended 200 px</comment>
+						<show_in_store>1</show_in_store>
+					</logo_height>
+				
+					<brand_image_width translate="label">
+						<label>Base Image Width</label>
+						<frontend_type>text</frontend_type>
+						<validate>required-entry</validate>
+						<sort_order>8</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>In pixel</comment>
+					</brand_image_width>
+
+
+					<brand_image_height translate="label">
+						<label>Base Image Height</label>
+						<frontend_type>text</frontend_type>
+						<validate>required-entry</validate>
+						<sort_order>9</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>In pixel</comment>
+					</brand_image_height>
+
+					<default_logo translate="label comment">
+						<label>Default Logo</label>
+						<comment>Allowed file types: jpeg, gif, png. If brand logo is not uploaded use default</comment>
+						<frontend_type>image</frontend_type>
+						<backend_model>adminhtml/system_config_backend_image</backend_model>
+						<upload_dir config="system/filesystem/media" scope_info="1">brand</upload_dir>
+						<base_url type="media" scope_info="1">brand</base_url>
+						<sort_order>11</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</default_logo>
+					
+					<show_in_footer translate="label">
+						<label>Show in footer</label>
+						<frontend_type>Select</frontend_type>
+						<sort_order>10</sort_order>
+						<source_model>adminhtml/system_config_source_yesno</source_model>
+						<sort_order>1</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>If yes, featured brands will be show in footer block</comment>
+					</show_in_footer>
+					
+				</fields>
+					
+				</settings>
+			</groups>
+		</netsol_brand>
+	</sections>
+</config>

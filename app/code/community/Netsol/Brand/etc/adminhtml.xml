@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<netsol_brand>
+										<title>Brand Settings</title>
+										<sort_order>999</sort_order>
+									</netsol_brand>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+	<menu>
+	   <netsol_brand>
+		   <title>Brand</title>
+		   <sort_order>71</sort_order>               
+			<children>
+				<items module="brand">
+				<title>Manage Items</title>
+				<sort_order>0</sort_order>
+				<action>brand/adminhtml_brand</action>
+				</items>
+			 </children>
+		</netsol_brand>
+	</menu>
+</config>

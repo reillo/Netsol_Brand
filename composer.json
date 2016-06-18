@@ -1,0 +1,7 @@
+{
+  "name": "netsol/brand",
+  "type": "magento-module",
+  "suggest": {
+    "magento-hackathon/magento-composer-installer": "*"
+  } 
+}

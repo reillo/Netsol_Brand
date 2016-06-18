@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Netsol
+ * @package     Netsol_Brand
+ * @copyright   Copyright (c) 2015 Netsolutions India (http://www.netsolutions.in)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Netsol_Brand>
+            <version>1.0.3</version>    <!-- Version of module -->
+        </Netsol_Brand>
+    </modules>
+    <frontend>
+        <routers>
+            <brand>
+                <use>brand_myrouter</use>
+                <args>
+                    <module>Netsol_Brand</module>
+                    <frontName>brand</frontName>
+                </args>
+            </brand>
+        </routers>
+		<layout>
+            <updates>
+                <brand>
+                    <file>brand.xml</file>
+                </brand>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <blocks>
+            <brand>
+                <class>Netsol_Brand_Block</class>
+            </brand>
+           <catalog>
+                <rewrite>
+                    <navigation>Netsol_Brand_Block_Navigation</navigation>
+                </rewrite>
+            </catalog>
+        </blocks>
+		<models>
+			<brand>
+                <class>Netsol_Brand_Model</class>
+                <resourceModel>brand_mysql4</resourceModel>
+            </brand>
+            <brand_mysql4>
+                <class>Netsol_Brand_Model_Mysql4</class>
+                <entities>
+                    <brand>
+                        <table>brand</table>
+                    </brand>
+                </entities>
+            </brand_mysql4>
+        </models>
+		 <resources>
+            <brand_setup>
+                <setup>
+                    <module>Netsol_Brand</module>
+					<class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </brand_setup>
+            <brand_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </brand_write>
+            <brand_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </brand_read>
+        </resources>
+        <helpers>
+            <brand>
+                <class>Netsol_Brand_Helper</class>
+            </brand>
+        </helpers>
+       <!-- <rewrite>
+			<Netsol_Brand>
+				<from><![CDATA[/brand\/(.*).html$/]]></from>
+                  <to><![CDATA[brand/index/view/$1/]]></to>
+                      <complete>1</complete>
+			</Netsol_Brand>
+		</rewrite>-->
+    </global>
+	<admin>
+		<routers>
+			<brand>
+				<use>admin</use>
+				<args>
+					<module>Netsol_Brand</module>
+					<frontName>brand</frontName>
+				</args>
+			</brand>
+		</routers>
+	</admin>
+	 <adminhtml>
+        <events>
+            <catalog_entity_attribute_save_after>
+                <observers>
+                    <netsol_brand>
+                        <class>brand/observer</class>
+                        <method>adminSaveBrandOptionValue</method>
+                    </netsol_brand>
+                </observers>
+            </catalog_entity_attribute_save_after>
+        </events>
+    </adminhtml>
+    <default>
+		<web>
+		  <routers>
+			 <brand_myrouter>
+				 <area>frontend</area>
+				 <class>Netsol_Brand_Controller_Router</class>
+			 </brand_myrouter>
+		 </routers>
+		</web>
+		<netsol_brand>
+			<settings>
+				<brand_url>brand</brand_url>
+				<brand_title>Brands</brand_title>
+				<brand_metatag>Meta keywords for brand page</brand_metatag>
+				<brand_description>Meta Description for brand page</brand_description>
+				<show_in_footer>1</show_in_footer>
+				<logo_width>120</logo_width>
+				<logo_height>60</logo_height>
+				<brand_image_width>100</brand_image_width>
+				<brand_image_height>100</brand_image_height>
+				<default_logo>default/small_image.jpg</default_logo>
+			</settings>
+		</netsol_brand>
+   </default>
+</config>

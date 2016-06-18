@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Netsol_Brand>
+            <active>true</active>
+            <codePool>community</codePool>
+            <self_name>Shop By Brands</self_name>
+            <priority>1000</priority>
+        </Netsol_Brand>
+    </modules>
+</config>

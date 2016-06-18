@@ -1,0 +1,70 @@
+<?php
+/***
+ *  brandfooter template
+ * 
+ * @package Brand_BrandFooterBlock
+ * */
+$collections = $this->getFeaturedbrand();
+$logowidth = Mage::getStoreConfig('netsol_brand/settings/logo_width');
+$logoheight = Mage::getStoreConfig('netsol_brand/settings/logo_height');
+$defaultlogo = Mage::getStoreConfig('netsol_brand/settings/default_logo');
+$brandurl = Mage::getStoreConfig('netsol_brand/settings/brand_url');
+$brandproducturlsuffix = '.html';
+$defaultlogo = str_replace("default/","",$defaultlogo);
+if($defaultlogo == '')
+{
+	$defaultlogo =  'small_image.jpg';
+}
+?>
+<?php if(count($collections )): ?>
+<div class="featurebrand">
+	<h1>Feature Brands</h1>
+	<div id="slider1">
+		<a class="buttons prev" href="#">&#60;</a>
+			<div class="viewport">
+				<ul class="overview">
+				<?php foreach($collections as $featurebrand): ?>
+					<li>
+						<a href="<?php echo Mage::getBaseUrl().$brandurl.'/'.strtolower($featurebrand['name']).trim($brandproducturlsuffix); ?>" >
+							<img src="<?php echo ($featurebrand['logo'] != '') ? $this->resize('brand/logo/','brand/logo/resize/',$featurebrand['logo'],$logowidth,$logoheight) : $this->resize('brand/default/','brand/default/resize/',$defaultlogo,$logowidth,$logoheight); ?>">
+						</a>
+					</li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+		<a class="buttons next" href="#">&#62;</a>
+	</div>
+</div>
+<script type="text/javascript">
+if ( typeof jQuery == 'undefined')
+{
+  var script=document.createElement('script');
+  var scripttiny =  document.createElement('script');
+  script.onload = function() {
+	console.log("Script loaded and ready");
+	jQuery.noConflict();
+	scripttiny.type='text/javascript';
+	scripttiny.src='<?php echo $this->getSkinUrl('js/netsol/brand/jquery.tinycarousel.js');?>';
+	document.getElementsByTagName('head')[0].appendChild(scripttiny);
+	jQuery(document).ready(function(){
+	  jQuery('#slider1').tinycarousel({ interval: true });
+	});
+  };
+  script.type='text/javascript';
+  script.src='<?php echo $this->getSkinUrl('js/netsol/brand/jquery-1.10.2.min.js');?>';
+  document.getElementsByTagName('head')[0].appendChild(script);
+}else{
+var scripttiny =  document.createElement('script');
+  scripttiny.onload = function() {
+	console.log("Script loaded and ready");
+	jQuery.noConflict();
+	jQuery(document).ready(function(){
+	  jQuery('#slider1').tinycarousel({ interval: true });
+	});
+  };
+scripttiny.type='text/javascript';
+scripttiny.src='<?php echo $this->getSkinUrl('js/netsol/brand/jquery.tinycarousel.js');?>';
+document.getElementsByTagName('head')[0].appendChild(scripttiny);
+}
+</script>
+<?php endif; ?>

@@ -1,0 +1,54 @@
+<?php
+/***
+ *  top menu with brand menu
+ * 
+ * @package Brand_Block_Navigation
+ * */
+ $html = $this->Brandcustommenu(0,'level-top');
+ $enable = Mage::getStoreConfig('netsol_brand/settings/status');
+ $magentoDefaultpackage = Mage::getSingleton('core/design_package')->getPackageName();
+?>
+<?php if($enable == 1 ): ?>
+<!---checking catalog navigation is not present-->
+<?php if(Mage::app()->getLayout()->createBlock('page/html_topmenu')){?>
+<?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
+
+   <?php if($magentoDefaultpackage == 'rwd'):?>
+	
+	 <nav id="nav">
+        <ol class="nav-primary">
+			<?php if($_menu): ?>
+				<?php echo $_menu ?>
+			<?php endif ?>
+            <?php echo $html ?>
+        </ol>
+    </nav>
+    
+    <?php else: ?>
+		<div class="nav-container">
+			<ul id="nav">
+				<?php if($_menu): ?>
+					<?php echo $_menu ?>
+				<?php endif ?>
+				<?php echo $html ?>
+			</ul>
+		</div>
+	<?php endif; ?>
+
+<!---checking catalog navigation is not present-->
+<?php }else{ ?>
+<!---checking catalog navigation is  present (magento old version)-->	
+<?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
+
+<div class="nav-container">
+    <ul id="nav">
+        <?php if($_menu): ?>
+			<?php echo $_menu ?>
+        <?php endif ?>
+        <?php echo $html ?>
+    </ul>
+</div>
+<!---checking catalog navigation is  present (magento old version)-->	
+<?php } ?>
+
+<?php endif; ?>

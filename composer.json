@@ -1,6 +1,7 @@
 {
   "name": "netsol/brand",
   "type": "magento-module",
+  "description": "Cloned version of Netsol_Brand",
   "suggest": {
     "magento-hackathon/magento-composer-installer": "*"
   } 

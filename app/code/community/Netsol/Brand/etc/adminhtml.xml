@@ -28,8 +28,8 @@
 				<items module="brand">
 				<title>Manage Items</title>
 				<sort_order>0</sort_order>
-				<action>brand/adminhtml_brand</action>
-				</items>
+				<action>adminhtml/netsolbrand_index</action>
+                </items>
 			 </children>
 		</netsol_brand>
 	</menu>

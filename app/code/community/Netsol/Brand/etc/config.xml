@@ -22,7 +22,7 @@
 <config>
     <modules>
         <Netsol_Brand>
-            <version>1.0.3</version>    <!-- Version of module -->
+            <version>1.0.3.1</version>    <!-- Version of module -->
         </Netsol_Brand>
     </modules>
     <frontend>
@@ -103,15 +103,15 @@
 		</rewrite>-->
     </global>
 	<admin>
-		<routers>
-			<brand>
-				<use>admin</use>
-				<args>
-					<module>Netsol_Brand</module>
-					<frontName>brand</frontName>
-				</args>
-			</brand>
-		</routers>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Netsol_Brand before="Mage_Adminhtml">Netsol_Brand_Adminhtml</Netsol_Brand>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
 	</admin>
 	 <adminhtml>
         <events>

@@ -17,7 +17,7 @@
  * @copyright   Copyright (c) 2015 Netsolutions India (http://www.netsolutions.in)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 */     
-class Netsol_Brand_Adminhtml_BrandController extends Mage_Adminhtml_Controller_Action
+class Netsol_Brand_Adminhtml_Netsolbrand_IndexController extends Mage_Adminhtml_Controller_Action
 {
  
 	protected function _initAction()
